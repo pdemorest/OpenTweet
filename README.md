@@ -1,6 +1,35 @@
 OpenTweet
 =========
 
+@Olivier:
+
+Note: This is just my first submission, just so you have something to look at, but it's still missing the basic requirement to scale to different sized devices (try running with iPhone 5s or iPhone 6, these work best for now). I am still working on figuring out how to set these layout constraints correctly. Will give you an update.
+
+Features I added:
+
+* I added storyboard just cuz it’s what I’m used to, although I have a familiarity with nibs too.
+
+* I also embedded TimeLineViewController in a NavigationController (will help later when I need to pop a ViewController off the stack)
+
+* I created two helper methods to help with 1) calculating the date, and 2) calculating the height for the multiline text
+
+* I tagged all my comments with my initials 'PSD' so they are easy for you to search for
+
+Next line of action:
+
+* Continue working on layout constraints
+
+* Bonus feature: segue to new ViewController with Tweet threads
+
+* Bonus feature: maybe dispay the author's avatar when user clicks author's name? or have avatar appear in tableview cell itself
+
+* Bonus feature: display attached images 
+
+Last remarks: If I missed any other basic features that you wanted to see, please let me know. (I still have yet
+to add to the test file)
+
+----------------------------------------------------------------------------------------------------------------
+
 Hi Patricia! Welcome to your iOS coding excercise.
 
 The purpose of the excercise is to gauge your ability to catch up on UIKit skills. This is a very simple twitter like client. You'll find a json file under Data/ with a short tweet timeline. You are asked to write the app that will display the tweets, similar to what a Twitter client would do.

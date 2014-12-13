@@ -7,8 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TimeLineTableViewCell.h"
 
-@interface TimeLineViewController : UIViewController
+@interface TimeLineViewController : UIViewController<UITableViewDataSource, UITableViewDelegate> {
+    
+}
+
+@property (nonatomic, strong) NSArray *timelineArr;
+@property (nonatomic, weak) IBOutlet UITableView *timelineTableView;
 
 
 @end

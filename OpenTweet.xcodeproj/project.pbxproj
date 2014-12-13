@@ -15,6 +15,8 @@
 		001741CE1A3BC60900D1D283 /* OpenTweetTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 001741CD1A3BC60900D1D283 /* OpenTweetTests.m */; };
 		001741D81A3BC7DC00D1D283 /* TimeLineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 001741D71A3BC7DC00D1D283 /* TimeLineViewController.xib */; };
 		001741DD1A3BC85900D1D283 /* timeline.json in Resources */ = {isa = PBXBuildFile; fileRef = 001741DC1A3BC85900D1D283 /* timeline.json */; };
+		4D5D6ABF1A3C009500B885A4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D5D6ABE1A3C009500B885A4 /* Main.storyboard */; };
+		4D5D6AC21A3C076F00B885A4 /* TimeLineTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D5D6AC11A3C076F00B885A4 /* TimeLineTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +44,9 @@
 		001741CD1A3BC60900D1D283 /* OpenTweetTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OpenTweetTests.m; sourceTree = "<group>"; };
 		001741D71A3BC7DC00D1D283 /* TimeLineViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeLineViewController.xib; sourceTree = "<group>"; };
 		001741DC1A3BC85900D1D283 /* timeline.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = timeline.json; sourceTree = "<group>"; };
+		4D5D6ABE1A3C009500B885A4 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		4D5D6AC01A3C076F00B885A4 /* TimeLineTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLineTableViewCell.h; sourceTree = "<group>"; };
+		4D5D6AC11A3C076F00B885A4 /* TimeLineTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeLineTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,9 +94,12 @@
 				001741B81A3BC60900D1D283 /* TimeLineViewController.h */,
 				001741B91A3BC60900D1D283 /* TimeLineViewController.m */,
 				001741D71A3BC7DC00D1D283 /* TimeLineViewController.xib */,
+				4D5D6AC01A3C076F00B885A4 /* TimeLineTableViewCell.h */,
+				4D5D6AC11A3C076F00B885A4 /* TimeLineTableViewCell.m */,
 				001741BE1A3BC60900D1D283 /* Images.xcassets */,
 				001741C01A3BC60900D1D283 /* LaunchScreen.xib */,
 				001741B11A3BC60900D1D283 /* Supporting Files */,
+				4D5D6ABE1A3C009500B885A4 /* Main.storyboard */,
 			);
 			path = OpenTweet;
 			sourceTree = "<group>";
@@ -211,6 +219,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				001741DD1A3BC85900D1D283 /* timeline.json in Resources */,
+				4D5D6ABF1A3C009500B885A4 /* Main.storyboard in Resources */,
 				001741D81A3BC7DC00D1D283 /* TimeLineViewController.xib in Resources */,
 				001741C21A3BC60900D1D283 /* LaunchScreen.xib in Resources */,
 				001741BF1A3BC60900D1D283 /* Images.xcassets in Resources */,
@@ -231,6 +240,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D5D6AC21A3C076F00B885A4 /* TimeLineTableViewCell.m in Sources */,
 				001741BA1A3BC60900D1D283 /* TimeLineViewController.m in Sources */,
 				001741B71A3BC60900D1D283 /* AppDelegate.m in Sources */,
 				001741B41A3BC60900D1D283 /* main.m in Sources */,
@@ -416,6 +426,7 @@
 				001741D31A3BC60900D1D283 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		001741D41A3BC60900D1D283 /* Build configuration list for PBXNativeTarget "OpenTweetTests" */ = {
 			isa = XCConfigurationList;
@@ -424,6 +435,7 @@
 				001741D61A3BC60900D1D283 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

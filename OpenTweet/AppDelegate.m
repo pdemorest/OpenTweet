@@ -17,11 +17,22 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	// Override point for customization after application launch.
-	self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-	
-	TimeLineViewController *timelineController = [[TimeLineViewController alloc] initWithNibName:nil bundle:nil];
-	self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:timelineController];
-	[self.window makeKeyAndVisible];
+    
+    /*
+     PSD:
+     changed rootViewController to NavigationController
+     added Storyboard
+     */
+    
+    self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+    UIViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"NavigationController"];
+    
+    self.window.rootViewController = viewController;
+    [self.window makeKeyAndVisible];
+    
 	return YES;
 }
 
