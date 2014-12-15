@@ -17,12 +17,12 @@ But it has bugs.. :P
 
 * When testing on my device, I noticed that sometimes when a cell scrolls into view, the spacing/height of the cell is larger than it should be, until I scroll out of view and back into view of the buggy cell, at which point the spacing/height of the cell is fixed
 * When I scroll really fast, sometimes an avatar shows up within the wrong cell, and then after a short period of time it corrects itself
-* The spacing from the test within a cell to the top of the cell and the spacing from the test within a cell to the bottom of the cell are not perfectly equal size, need to fix this
+* The spacing from the text within a cell to the top of the cell and the spacing from the text within a cell to the bottom of the cell are not perfectly equal size, need to fix this
 
 Remarks
 -------
 
-* Right now, if a tweet is replying to another tweet, but it also has a new thread starting from it, I display choose to display the tweet and the thread it is replying to only
+* Right now, if a tweet is replying to another tweet, but it also has a new thread starting from it, I choose to display the tweet and the thread it is replying to only
 * To be honest, I got the background thread to work, but still don't completely understand how blocks work.. I will do my research to gain a better understanding
 * To be honest, not that familiar with xctest either, but found good documentation on it so I will read up
 * I had to stop working on this because I ended up getting busier this weekend (had work at the restaurant both Sat and Sun, and had school assignments) and didn't have time to add tests and fix the bugs I mentioned above :/ If you would like to see more, could I continue working on this after my finals this week?
