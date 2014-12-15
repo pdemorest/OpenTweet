@@ -3,30 +3,33 @@ OpenTweet
 
 @Olivier:
 
-Note: This is just my first submission, just so you have something to look at, but it's still missing the basic requirement to scale to different sized devices (try running with iPhone 5s or iPhone 6, these work best for now). I am still working on figuring out how to set these layout constraints correctly. Will give you an update.
+Updates
+-------
 
-Features I added:
+* Dates fixed (well I'm assuming I don't have to worry about converting to UTC since more appropriate to display local time?)
+* Autolayout fixed
+* Tweet threads added
+* Highlighted mentions in tweets
+* Avatars added
 
-* I added storyboard just cuz it’s what I’m used to, although I have a familiarity with nibs too.
+But it has bugs.. :P
+--------------------
 
-* I also embedded TimeLineViewController in a NavigationController (will help later when I need to pop a ViewController off the stack)
+* When testing on my device, I noticed that sometimes when a cell scrolls into view, the spacing/height of the cell is larger than it should be, until I scroll out of view and back into view of the buggy cell, at which point the spacing/height of the cell is fixed
+* When I scroll really fast, sometimes an avatar shows up within the wrong cell, and then after a short period of time it corrects itself
+* The spacing from the test within a cell to the top of the cell and the spacing from the test within a cell to the bottom of the cell are not perfectly equal size, need to fix this
 
-* I created two helper methods to help with 1) calculating the date, and 2) calculating the height for the multiline text
+Remarks
+-------
 
-* I tagged all my comments with my initials 'PSD' so they are easy for you to search for
+* Right now, if a tweet is replying to another tweet, but it also has a new thread starting from it, I display choose to display the tweet and the thread it is replying to only
+* To be honest, I got the background thread to work, but still don't completely understand how blocks work.. I will do my research to gain a better understanding
+* To be honest, not that familiar with xctest either, but found good documentation on it so I will read up
+* I had to stop working on this because I ended up getting busier this weekend (had work at the restaurant both Sat and Sun, and had school assignments) and didn't have time to add tests and fix the bugs I mentioned above :/ If you would like to see more, could I continue working on this after my finals this week?
 
-Next line of action:
+Thanks! such app, much enjoyed
 
-* Continue working on layout constraints
-
-* Bonus feature: segue to new ViewController with Tweet threads
-
-* Bonus feature: maybe dispay the author's avatar when user clicks author's name? or have avatar appear in tableview cell itself
-
-* Bonus feature: display attached images 
-
-Last remarks: If I missed any other basic features that you wanted to see, please let me know. (I still have yet
-to add to the test file)
+Patricia
 
 ----------------------------------------------------------------------------------------------------------------
 
