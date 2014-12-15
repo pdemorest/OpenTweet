@@ -10,6 +10,7 @@
 
 @interface TimeLineTableViewCell : UITableViewCell
 
+@property (nonatomic, weak) IBOutlet UIImageView *avatar;
 @property (nonatomic, weak) IBOutlet UILabel *author;
 @property (nonatomic, weak) IBOutlet UILabel *date;
 @property (nonatomic, weak) IBOutlet UILabel *tweet;

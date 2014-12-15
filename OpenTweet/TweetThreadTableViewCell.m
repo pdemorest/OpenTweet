@@ -1,14 +1,14 @@
 //
-//  TimeLineTableViewCell.m
+//  TweetThreadTableViewCell.m
 //  OpenTweet
 //
-//  Created by Patricia S Demorest on 12/12/14.
+//  Created by Patricia S Demorest on 12/13/14.
 //  Copyright (c) 2014 OpenTable. All rights reserved.
 //
 
-#import "TimeLineTableViewCell.h"
+#import "TweetThreadTableViewCell.h"
 
-@implementation TimeLineTableViewCell
+@implementation TweetThreadTableViewCell
 
 @synthesize avatar;
 @synthesize author;

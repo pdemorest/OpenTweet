@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "TimeLineTableViewCell.h"
+#import "TweetThreadViewController.h"
 
 @interface TimeLineViewController : UIViewController<UITableViewDataSource, UITableViewDelegate> {
     

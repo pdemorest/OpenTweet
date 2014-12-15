@@ -40,6 +40,7 @@
 	[super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -70,6 +71,8 @@
     TimeLineTableViewCell *cell = (TimeLineTableViewCell *)[self tableView:tableView cellForRowAtIndexPath:indexPath];
     CGFloat multiLineHeight = [self heightForText:labelText forLabel:cell.tweet];
     
+    //PSD: TODO: text for label is not getting set to attributed string
+    
     /*author label and date label will always fit to one line, so their heights will always be 30, add 30 for extra space above and below labels*/
     return multiLineHeight + 30 + 30 + 30;
     
@@ -77,6 +80,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    NSDictionary *tweet = [timelineArr objectAtIndex:indexPath.row];
     
     NSString *cellIdentifier = @"TimeLineCell";
     
@@ -99,34 +103,85 @@
     
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
     [df setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss"];
-    /*PSD: changeToTimeZone will return the ^ above format, with the +/- hours accounted for (utc->timezone)*/
-    NSString *dateStr = [self changeToTimeZone:[[timelineArr objectAtIndex:indexPath.row] valueForKey:@"date"]];
+    //NSString *dateStr = [self convertToUTC:[[timelineArr objectAtIndex:indexPath.row] valueForKey:@"date"]];
+    /*PSD: UPDATE: Assuming that the date should probably just be displayed as local time anyways, so calculating UTC is unnecessary*/
+    NSString *dateStr = [[tweet valueForKey:@"date"] substringToIndex:19];
     NSDate *myDate = [df dateFromString:dateStr];
     
     [df setDateStyle:NSDateFormatterLongStyle];
     [df setTimeStyle:NSDateFormatterShortStyle];
     
     [cell.date setText:[df stringFromDate:myDate]];
-    [cell.author setText:[[timelineArr objectAtIndex:indexPath.row] valueForKey:@"author"]];
-    NSString *multilineString = [[timelineArr objectAtIndex:indexPath.row] valueForKey:@"content"];
-    [cell.tweet setText:multilineString];
+    
+    if ([tweet valueForKey:@"avatar"] == nil) {
+        [cell.avatar setImage:[UIImage imageNamed:@"noimage.png"]];
+    } else {
+        __block UIImage *fetchedImage = [[UIImage alloc] init];
+        dispatch_queue_t backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        dispatch_queue_t mainQueue = dispatch_get_main_queue();
+        dispatch_async(backgroundQueue,^{
+            // background process
+            fetchedImage = [UIImage imageWithData: [NSData dataWithContentsOfURL:[NSURL URLWithString:[tweet valueForKey:@"avatar"]]]];
+            dispatch_async(mainQueue,^{
+                // always update GUI from the main thread
+                [cell.avatar setImage:fetchedImage];
+            });
+        });
+    }
+    
+    [cell.author setText:[[tweet valueForKey:@"author"] substringFromIndex:1]];
+    NSString *labelText = [tweet valueForKey:@"content"];
+    if ([labelText containsString:@"@"]) {
+        /*create attributed string*/
+        int start = (int)[labelText rangeOfString:@"@"].location;
+        int end = (int)[[labelText substringFromIndex:start] rangeOfString:@" "].location + start;
+        NSMutableAttributedString *attrContent = [[NSMutableAttributedString alloc] initWithString:labelText];
+        [attrContent addAttribute:NSForegroundColorAttributeName
+                            value:[UIColor blueColor]
+                            range:NSMakeRange(start, end)];
+        [cell.tweet setAttributedText:attrContent];
+        //NSLog(@"attr text: %@", [cell.tweet attributedText]);
+    } else {
+        [cell.tweet setText:labelText];
+    }
     
     
     return cell;
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([segue.identifier isEqualToString:@"toTweetThreadViewController"]) {
+        
+        NSIndexPath *indexPath = [timelineTableView indexPathForSelectedRow];
+        TweetThreadViewController *destViewController = segue.destinationViewController;
+        [destViewController setTimelineArr:timelineArr];
+        [destViewController setTappedTweet:[timelineArr objectAtIndex:indexPath.row]];        
+    }
+}
+
 /*PSD: helper methods*/
 
-- (NSString *)changeToTimeZone:(NSString *)utcTime {
+
+/*TODO: this helper method not completely implemented*/
+- (NSString *)convertToUTC:(NSString *)utcTime {
     
     NSMutableString *newStr = [[NSMutableString alloc] initWithCapacity:20];
     int oldTime = [[utcTime substringWithRange:NSMakeRange(11, 2)] intValue];
     int delta = [[utcTime substringWithRange:NSMakeRange(20, 2)] intValue];
     int newTime;
     if ([[utcTime substringWithRange:NSMakeRange(19, 1)] isEqualToString:@"+"]) {
-        newTime = (oldTime + delta) % 24;
-    } else {
         newTime = (oldTime - delta) % 24;
+        if (oldTime - delta < 0) {
+            //utc time is on previous day
+            //but then the calendar year is modular as well -_-
+        }
+    } else {
+        newTime = (oldTime + delta) % 24;
+        if (oldTime + delta > 24) {
+            //utc time is on next day
+            //but then the calendar year is modular as well -_-
+        }
     }
     [newStr appendString:[utcTime substringToIndex:11]];
     [newStr appendString:[NSString stringWithFormat:@"%i",newTime]];
